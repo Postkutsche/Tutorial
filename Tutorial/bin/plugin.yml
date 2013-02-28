@@ -1,0 +1,33 @@
+name: Tutorials
+version: 0.2
+author: PostCrafter
+
+depend: [Vault]
+
+main: de.postcrafter.tutorial.Tutorial
+
+commands:
+  tutorial:
+    description: Startet das Tutorial
+    usage: /tutorial
+    aliases: [tut]
+    permission: tutorial.use
+    permission-message: Du kannst diesen Befehl nicht verwenden!
+  heal:
+    description: Heilt einen Spieler
+  geschenk:
+    description: Erhalte ein Geschenk
+  callback:
+    description: Teleportiert dich
+  sign:
+    description: Change Signs
+  econ:
+    description: Economy command
+    aliases: [buy,sell]
+  meta:
+    description: Metacommand
+  region:
+    description: Regionen
+    aliases: [rg]
+  afk:
+    description: AFK-Befehl
