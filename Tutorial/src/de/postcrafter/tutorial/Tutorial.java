@@ -49,6 +49,8 @@ public class Tutorial extends JavaPlugin {
 
 	public HashMap<String, Region> regions = new HashMap<String, Region>();
 	
+	private Teleport teleport;
+	
 	public static Tutorial getTutorial() {
 		return Tutorial.plugin;
 	}
@@ -79,6 +81,8 @@ public class Tutorial extends JavaPlugin {
 		
 		System.out.println("Starte Tutorial...");
 
+		this.teleport = new Teleport();
+		
 		this.getCommand("tutorial").setExecutor(new TutorialCommand());
 		this.getCommand("heal").setExecutor(new HealCommand());
 		this.getCommand("geschenk").setExecutor(new GeschenkCommand());
@@ -88,6 +92,7 @@ public class Tutorial extends JavaPlugin {
 		this.getCommand("meta").setExecutor(new MetaCommand());
 		this.getCommand("region").setExecutor(new RegionCommand(this));
 		this.getCommand("afk").setExecutor(new AFKCommand());
+		this.getCommand("teleport").setExecutor(this.teleport);
 		
 		PluginManager pm = this.getServer().getPluginManager();
 		pm.registerEvents(new JoinListener(this), this);
@@ -97,6 +102,7 @@ public class Tutorial extends JavaPlugin {
 		pm.registerEvents(new RegionListener(this), this);
 		pm.registerEvents(new AFKListener(), this);
 		pm.registerEvents(new SignListener(), this);
+		pm.registerEvents(this.teleport, this);
 		
 		this.getConfig().addDefault("info.motd", new String[] {
 			"§7Willkommen auf dem §6Tutorialserver!",

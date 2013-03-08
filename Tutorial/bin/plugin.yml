@@ -31,3 +31,5 @@ commands:
     aliases: [rg]
   afk:
     description: AFK-Befehl
+  teleport:
+    description: InvTP
