@@ -34,6 +34,7 @@ import de.postcrafter.tutorial.command.HealCommand;
 import de.postcrafter.tutorial.command.MetaCommand;
 import de.postcrafter.tutorial.command.SignCommand;
 import de.postcrafter.tutorial.command.TutorialCommand;
+import de.postcrafter.tutorial.data.MySQL;
 import de.postcrafter.tutorial.listener.AFKListener;
 import de.postcrafter.tutorial.listener.ChatListener;
 import de.postcrafter.tutorial.listener.DamageListener;
@@ -54,6 +55,8 @@ public class Tutorial extends JavaPlugin {
 	public HashMap<String, Region> regions = new HashMap<String, Region>();
 	
 	private Teleport teleport;
+	
+	private MySQL sql;
 	
 	public static Tutorial getTutorial() {
 		return Tutorial.plugin;
@@ -80,10 +83,18 @@ public class Tutorial extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		Tutorial.plugin = this;
-		
+
+		PluginManager pm = this.getServer().getPluginManager();
 		this.setupEconomy();
 		
 		System.out.println("Starte Tutorial...");
+		
+		try {
+			this.sql = new MySQL();
+			
+		} catch (Exception e) {
+			System.err.println("Failed to start MySQL-service (" + e.getMessage() + ").");
+		}
 
 		this.teleport = new Teleport();
 		
@@ -98,7 +109,6 @@ public class Tutorial extends JavaPlugin {
 		this.getCommand("afk").setExecutor(new AFKCommand());
 		this.getCommand("teleport").setExecutor(this.teleport);
 		
-		PluginManager pm = this.getServer().getPluginManager();
 		pm.registerEvents(new JoinListener(this), this);
 		pm.registerEvents(new DamageListener(), this);
 		pm.registerEvents(new FlyListener(), this);
@@ -166,6 +176,10 @@ public class Tutorial extends JavaPlugin {
 		item2.setItemMeta(meta2);
 		FurnaceRecipe recipe2 = new FurnaceRecipe(item2, Material.BAKED_POTATO);
 		Bukkit.addRecipe(recipe2);
+	}
+	
+	public MySQL getMySQL() {
+		return this.sql;
 	}
 	
 	private boolean setupEconomy() {
