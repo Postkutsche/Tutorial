@@ -1,5 +1,6 @@
 package de.postcrafter.tutorial;
 
+import java.sql.Connection;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
@@ -31,6 +32,7 @@ public class Teleport implements CommandExecutor, Listener {
 		}
 		Player p = (Player) cs;
 		this.openInv(p);
+		Connection conn;
 		return false;
 	}
 	
