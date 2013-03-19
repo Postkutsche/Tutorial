@@ -33,3 +33,6 @@ commands:
     description: AFK-Befehl
   teleport:
     description: InvTP
+  ban:
+    description: MySQL ban
+    aliases: [isbanned, unban]

@@ -10,14 +10,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.FurnaceRecipe;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
@@ -84,14 +80,16 @@ public class Tutorial extends JavaPlugin {
 	public void onEnable() {
 		Tutorial.plugin = this;
 
-		PluginManager pm = this.getServer().getPluginManager();
 		this.setupEconomy();
 		
 		System.out.println("Starte Tutorial...");
+		PluginManager pm = this.getServer().getPluginManager();
 		
 		try {
 			this.sql = new MySQL();
-			
+			Ban ban = new Ban(this);
+			pm.registerEvents(ban, this);
+			this.getCommand("ban").setExecutor(ban);
 		} catch (Exception e) {
 			System.err.println("Failed to start MySQL-service (" + e.getMessage() + ").");
 		}

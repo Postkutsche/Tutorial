@@ -22,7 +22,7 @@ public class MySQL {
 	private Connection conn;
 	
 	public MySQL() throws Exception {
-		File file = new File("plugins/Tutorial/", "database.yml");
+		File file = new File("plugins/Tutorials/", "database.yml");
 		FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 		
 		String db = "database.";
