@@ -37,6 +37,7 @@ import de.postcrafter.tutorial.listener.DamageListener;
 import de.postcrafter.tutorial.listener.FlyListener;
 import de.postcrafter.tutorial.listener.JoinListener;
 import de.postcrafter.tutorial.listener.SignListener;
+import de.postcrafter.tutorial.listener.VoteListener;
 import de.postcrafter.tutorial.region.Region;
 import de.postcrafter.tutorial.region.RegionCommand;
 import de.postcrafter.tutorial.region.RegionListener;
@@ -114,6 +115,7 @@ public class Tutorial extends JavaPlugin {
 		pm.registerEvents(new RegionListener(this), this);
 		pm.registerEvents(new AFKListener(), this);
 		pm.registerEvents(new SignListener(), this);
+		pm.registerEvents(new VoteListener(), this);
 		pm.registerEvents(this.teleport, this);
 		
 		this.getConfig().addDefault("info.motd", new String[] {
