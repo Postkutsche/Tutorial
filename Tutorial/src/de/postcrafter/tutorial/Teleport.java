@@ -27,7 +27,7 @@ public class Teleport implements CommandExecutor, Listener {
 	@Override
 	public boolean onCommand(CommandSender cs, Command cmd, String label, String[] arg3) {
 		if (!(cs instanceof Player)) {
-			cs.sendMessage("§cComputer können sich teleportieren");
+			cs.sendMessage("§cComputer können sich nicht teleportieren");
 			return true;
 		}
 		Player p = (Player) cs;
