@@ -45,16 +45,19 @@ public class Teleport implements CommandExecutor, Listener {
 					e.setCancelled(true);
 					p.updateInventory();
 					ItemStack item = e.getCurrentItem();
-					if (item != null) {
-						String name = ChatColor.stripColor(item.getItemMeta().getDisplayName());
-						Player p_ = Bukkit.getPlayerExact(name);
-						if (p_ != null) {
-							p.teleport(p_);
-							p.sendMessage("§7[§6InvTP§7] Du wurdest zu §6" + p_.getName() + "§7 teleportiert.");
-						} else {
-							p.sendMessage("§7[§6InvTP§7] Der Spieler §6" + name + "§7 ist nicht online.");
+					if (item != null && item.getType != Material.AIR) {
+						String display = item.getItemMeta().getDisplayName();
+						if (display != null) {
+							String name = ChatColor.stripColor(display);
+							Player p_ = Bukkit.getPlayerExact(name);
+							if (p_ != null) {
+								p.teleport(p_);
+								p.sendMessage("§7[§6InvTP§7] Du wurdest zu §6" + p_.getName() + "§7 teleportiert.");
+							} else {
+								p.sendMessage("§7[§6InvTP§7] Der Spieler §6" + name + "§7 ist nicht online.");
+							}
+							this.closeInv(p);
 						}
-						this.closeInv(p);
 					}
 				}
 			}
