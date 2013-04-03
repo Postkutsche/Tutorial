@@ -45,7 +45,7 @@ public class Teleport implements CommandExecutor, Listener {
 					e.setCancelled(true);
 					p.updateInventory();
 					ItemStack item = e.getCurrentItem();
-					if (item != null && item.getType != Material.AIR) {
+					if (item != null && item.getType() != Material.AIR) {
 						String display = item.getItemMeta().getDisplayName();
 						if (display != null) {
 							String name = ChatColor.stripColor(display);
